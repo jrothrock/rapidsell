@@ -1,0 +1,17 @@
+# Ignore all vscode related files
+.vscode/*
+
+# Ignore Terraform generated files
+*/.terraform*
+*.tfstate
+*.tfstate.*
+
+# Ignore environment
+.venv
+
+# Ignore unneeded application generated items
+*.pyc
+*.log
+
+# Ignore OSx generated files
+.DS_STORE
