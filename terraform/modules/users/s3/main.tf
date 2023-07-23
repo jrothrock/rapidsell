@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "emails_bucket" {
-  bucket = "${var.app_name}-emails-bucket-2"
+  bucket = "${var.app_name}-emails-bucket"
 }
 
 resource "null_resource" "delay" {
@@ -25,7 +25,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
                 "Service": "ses.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::${var.app_name}-emails-bucket-2/*"
+            "Resource": "arn:aws:s3:::${var.app_name}-emails-bucket/*"
         }
     ]
 }
