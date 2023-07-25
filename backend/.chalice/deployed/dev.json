@@ -1,0 +1,37 @@
+{
+  "resources": [
+    {
+      "name": "default-role",
+      "resource_type": "iam_role",
+      "role_arn": "arn:aws:iam::314100250587:role/backend-dev",
+      "role_name": "backend-dev"
+    },
+    {
+      "name": "api_handler",
+      "resource_type": "lambda_function",
+      "lambda_arn": "arn:aws:lambda:us-west-1:314100250587:function:backend-dev"
+    },
+    {
+      "name": "rest_api",
+      "resource_type": "rest_api",
+      "rest_api_id": "78e71b6f2e",
+      "rest_api_url": "https://78e71b6f2e.execute-api.us-west-1.amazonaws.com/api/"
+    },
+    {
+      "name": "api_gateway_custom_domain",
+      "resource_type": "domain_name",
+      "hosted_zone_id": "Z2FDTNDATAQYW2",
+      "alias_domain_name": "d3u4ivk7v3337i.cloudfront.net",
+      "certificate_arn": "arn:aws:acm:us-east-1:314100250587:certificate/7e0c6260-b090-4a17-85ae-225235b9521b",
+      "security_policy": "TLS_1_2",
+      "domain_name": "api.rapidsell.io",
+      "api_mapping": [
+        {
+          "key": "/"
+        }
+      ]
+    }
+  ],
+  "schema_version": "2.0",
+  "backend": "api"
+}
