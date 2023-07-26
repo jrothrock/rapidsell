@@ -2,7 +2,7 @@ Note, there's a bit of a chicken before the egg issue here in that, the zone nee
 created, and then the DNS name servers need to be updated on the domain registrar before the
 creation of the ACM cerificate.
 
-Running terraform apply once, then updating the DNS name servers (`terraform output`), and running again work.
+Running terraform apply once, then updating the DNS name servers (can be seen with `terraform output`), and running again should work.
 
 The creation of the API gateway has been moved, and is currently handled by chalice. Additionally,
 the creation of the CNAME (which is handled by terraform), relies on the dev.json file created by

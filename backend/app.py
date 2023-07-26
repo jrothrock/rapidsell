@@ -1,11 +1,14 @@
+"""Entrypoint to the rapidsell application."""
+
 from chalice import Chalice
 
-app = Chalice(app_name='backend')
+app = Chalice(app_name="backend")
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return {'hello': 'world'}
+    """Hello world."""
+    return {"hello": "world"}
 
 
 # The view function above will return {"hello": "world"}
