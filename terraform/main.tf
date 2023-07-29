@@ -14,7 +14,7 @@ module "users" {
   domain_name = var.domain_name
 }
 
-# Write created API gateway to chalice.
+# Write certificate and api_domain_name to chalice for API gateway creation.
 resource "local_file" "private_key" {
     content = templatefile("${path.module}/../backend/.chalice/config.json.tpl",
       {
@@ -24,4 +24,13 @@ resource "local_file" "private_key" {
     )
 
     filename  = "${path.module}/../backend/.chalice/config.json"
+}
+
+module "app" {
+  source = "./modules/app"
+
+  app_name = var.app_name
+  app_subdomain = var.app_subdomain
+  main_route53_zone_id = module.domain.main_route53_zone_id
+  certificate_arn = module.domain.aws_acm_certificate_arn
 }

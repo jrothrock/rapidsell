@@ -8,7 +8,6 @@ variable "api_subdomain" {
   description = "Subdomain of the API."
 }
 
-
 variable "cert_resource_record_name" {
   type = string
   description = "The cert resource record name."
