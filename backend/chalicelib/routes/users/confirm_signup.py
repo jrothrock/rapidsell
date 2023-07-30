@@ -32,13 +32,13 @@ class ConfirmSignUpResponse:
 
 def user_confirm_signup(request: Request):
     """User sign up."""
-    sign_up_params = ConfirmSignUpRequest.from_json_body(request.json_body)
+    confirmation_params = ConfirmSignUpRequest.from_json_body(request.json_body)
 
     boto_client = boto3.client("cognito-idp")
     boto_client.confirm_sign_up(
         ClientId=os.environ.get("AWS_COGNITO_CLIENT_ID"),
-        Username=sign_up_params.username,
-        ConfirmationCode=sign_up_params.confirmation_code,
+        Username=confirmation_params.username,
+        ConfirmationCode=confirmation_params.confirmation_code,
     )
 
     response = ConfirmSignUpResponse(Success=True)
