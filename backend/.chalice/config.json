@@ -8,6 +8,9 @@
         "domain_name": "api.rapidsell.io",
         "tls_version": "TLS_1_2|TLS_1_0",
         "certificate_arn": "arn:aws:acm:us-east-1:314100250587:certificate/7e0c6260-b090-4a17-85ae-225235b9521b"
+      },
+      "environment_variables": {
+        "AWS_COGNITO_CLIENT_ID": "7d594k8f4j1r54ned44thml0dd"
       }
     }
   }

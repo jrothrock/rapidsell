@@ -8,6 +8,9 @@
         "domain_name": "${api_domain_name}",
         "tls_version": "TLS_1_2|TLS_1_0",
         "certificate_arn": "${certificate_arn}"
+      },
+      "environment_variables": {
+        "AWS_COGNITO_CLIENT_ID": "7d594k8f4j1r54ned44thml0dd"
       }
     }
   }
