@@ -20,6 +20,7 @@ resource "local_file" "private_key" {
       {
         api_domain_name = var.api_subdomain
         certificate_arn = module.domain.aws_acm_certificate_arn
+        cognito_client_id = module.users.cognito_client_id
       }
     )
 

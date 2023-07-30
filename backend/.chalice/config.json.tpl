@@ -10,7 +10,7 @@
         "certificate_arn": "${certificate_arn}"
       },
       "environment_variables": {
-        "AWS_COGNITO_CLIENT_ID": "7d594k8f4j1r54ned44thml0dd"
+        "AWS_COGNITO_CLIENT_ID": "${cognito_client_id}"
       }
     }
   }
