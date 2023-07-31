@@ -12,14 +12,14 @@ from chalice.app import Request
 class ConfirmSignUpRequest:
     """The confirm signup request params structure."""
 
-    username: str
+    email: str
     confirmation_code: str
 
     @classmethod
     def from_json_body(cls, payload: dict[str, str]) -> ConfirmSignUpRequest:
         """Create the ConfirmSignUpRequest class from the payload."""
         return cls(
-            username=payload["username"], confirmation_code=payload["confirmation_code"]
+            email=payload["email"], confirmation_code=payload["confirmation_code"]
         )
 
 
@@ -27,7 +27,7 @@ class ConfirmSignUpRequest:
 class ConfirmSignUpResponse:
     """The signup response structure."""
 
-    Success: bool
+    success: bool
 
 
 def user_confirm_signup(request: Request):
@@ -37,10 +37,10 @@ def user_confirm_signup(request: Request):
     boto_client = boto3.client("cognito-idp")
     boto_client.confirm_sign_up(
         ClientId=os.environ.get("AWS_COGNITO_CLIENT_ID"),
-        Username=confirmation_params.username,
+        Username=confirmation_params.email,
         ConfirmationCode=confirmation_params.confirmation_code,
     )
 
-    response = ConfirmSignUpResponse(Success=True)
+    response = ConfirmSignUpResponse(success=True)
 
     return dataclasses.asdict(response)

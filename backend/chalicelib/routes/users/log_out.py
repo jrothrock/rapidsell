@@ -11,19 +11,19 @@ from chalice.app import Request
 class LogOutRequest:
     """The log out request params structure."""
 
-    AccessToken: str
+    access_token: str
 
     @classmethod
     def from_json_body(cls, payload: dict[str, str]) -> LogOutRequest:
         """Create the LogOutRequest class from the payload."""
-        return cls(AccessToken=payload["access_token"])
+        return cls(access_token=payload["access_token"])
 
 
 @dataclasses.dataclass
 class LogOutResponse:
     """The log out response structure."""
 
-    Success: bool
+    success: bool
 
 
 def user_log_out(request: Request):
@@ -33,6 +33,6 @@ def user_log_out(request: Request):
     boto_client = boto3.client("cognito-idp")
     boto_client.global_sign_out(AccessToken=log_out_params.AccessToken)
 
-    response = LogOutResponse(Success=True)
+    response = LogOutResponse(success=True)
 
     return dataclasses.asdict(response)

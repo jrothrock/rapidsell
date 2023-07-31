@@ -9,25 +9,25 @@ from chalicelib.routes.users.signup import user_sign_up
 users = Blueprint(__name__)
 
 
-@users.route("/users/sign_up", methods=["POST"])
+@users.route("/users/sign_up", methods=["POST"], cors=True)
 def sign_up():
     """Sign up for the user."""
     return user_sign_up(users.current_request)
 
 
-@users.route("/users/sign_up/confirm", methods=["POST"])
+@users.route("/users/sign_up/confirm", methods=["POST"], cors=True)
 def confirm_sign_up():
     """Confirm the sign up of the user."""
     return user_confirm_signup(users.current_request)
 
 
-@users.route("/users/sign_in", methods=["POST"])
+@users.route("/users/sign_in", methods=["POST"], cors=True)
 def sign_in():
     """Sign in the user."""
     return user_sign_in(users.current_request)
 
 
-@users.route("/users/log_out", methods=["POST"])
+@users.route("/users/log_out", methods=["POST"], cors=True)
 def log_out():
     """Log out the user."""
     return user_log_out(users.current_request)

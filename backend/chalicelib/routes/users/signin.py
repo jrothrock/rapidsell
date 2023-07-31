@@ -12,20 +12,20 @@ from chalice.app import Request
 class SignInRequest:
     """The signin request params structure."""
 
-    username: str
+    email: str
     password: str
 
     @classmethod
     def from_json_body(cls, payload: dict[str, str]) -> SignInRequest:
         """Create the SignInRequest class from the payload."""
-        return cls(username=payload["username"], password=payload["password"])
+        return cls(email=payload["email"], password=payload["password"])
 
 
 @dataclasses.dataclass
 class SignInResponse:
     """The sign in response structure."""
 
-    AccessToken: str
+    access_token: str
 
 
 def user_sign_in(request: Request):
@@ -37,12 +37,12 @@ def user_sign_in(request: Request):
         AuthFlow="USER_PASSWORD_AUTH",
         ClientId=os.environ.get("AWS_COGNITO_CLIENT_ID"),
         AuthParameters={
-            "USERNAME": sign_in_params.username,
+            "USERNAME": sign_in_params.email,
             "PASSWORD": sign_in_params.password,
         },
     )
 
     access_token = boto_response["AuthenticationResult"]["AccessToken"]
-    response = SignInResponse(AccessToken=access_token)
+    response = SignInResponse(access_token=access_token)
 
     return dataclasses.asdict(response)
