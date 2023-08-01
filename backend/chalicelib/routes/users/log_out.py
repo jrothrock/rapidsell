@@ -31,7 +31,7 @@ def user_log_out(request: Request):
     log_out_params = LogOutRequest.from_json_body(request.json_body)
 
     boto_client = boto3.client("cognito-idp")
-    boto_client.global_sign_out(AccessToken=log_out_params.AccessToken)
+    boto_client.global_sign_out(AccessToken=log_out_params.access_token)
 
     response = LogOutResponse(success=True)
 

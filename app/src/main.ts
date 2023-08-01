@@ -3,12 +3,21 @@ import './style.css';
 import App from './App.vue';
 import router from "./router/index";
 import { IonicVue } from '@ionic/vue';
+import { createPinia } from 'pinia'
+import { useAuthStore } from './stores';
 
-const app = createApp(App).use(IonicVue).use(router);
+const pinia = createPinia();
 
-router.isReady().then(() => {
-  app.mount('#app');
+const app = createApp(App).use(IonicVue).use(router).use(pinia);
+
+const store = useAuthStore();
+
+store.initializeAuthListener().then(() => {
+  router.isReady().then(() => {
+    app.mount('#app');
+  });
 });
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { useAuthStore } from '@/stores';
 import Home from '../views/Home/Home.vue';
 
 const BASE_URL = "/";
@@ -33,11 +34,12 @@ const router = createRouter({
 
 // route guards
 router.beforeEach((to, _, next) => {
-  const has_access_token = localStorage.getItem('access_token');
   const to_name = to.name;
 
   if(to_name != "SignUpConfirm" && to_name != "SignUp" && to_name != "SignIn")  {
-    if(!has_access_token) {
+    const store = useAuthStore();
+
+    if(!store.isLoggedIn) {
       next("/sign_in")
     } else {
       next();
