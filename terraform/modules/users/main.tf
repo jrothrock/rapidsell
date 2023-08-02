@@ -2,6 +2,7 @@ module "aws_cognito" {
   source = "./cognito"
 
   app_name = var.app_name
+  cognito_pool_name = var.cognito_pool_name
 }
 
 module "aws_s3" {

@@ -17,3 +17,8 @@ variable "app_subdomain" {
   type = string
   description = "Subdomain of the app."
 }
+
+variable "cognito_pool_name" {
+  type = string
+  description = "Name for the cognito pool."
+}
