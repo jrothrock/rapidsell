@@ -20,8 +20,16 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Uses camera for scanning and selling products.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Can add photos to library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Uses photo library for scanning and selling.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

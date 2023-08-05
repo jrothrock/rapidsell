@@ -5,4 +5,5 @@ export type SignInRequest = {
 
 export type SignInResponse = {
   access_token: string
+  id_token: string
 }

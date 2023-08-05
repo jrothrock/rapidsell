@@ -39,6 +39,14 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     max_ttl                = 86400
   }
 
+  # Not sure if this is the correct way to handle routing
+  # for reloads.
+  custom_error_response {
+    error_code = 403
+    response_code = 200
+    response_page_path = "/index.html"
+  }
+
   price_class = "PriceClass_100"
 
   restrictions {

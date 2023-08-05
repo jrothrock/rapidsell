@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Router } from 'vue-router';
 import type { SignUpRequest, SignUpResponse } from "@/api/users/SignUp";
 
-const SIGN_UP_URL = "https://api.rapidsell.io/users/sign_up";
+const SIGN_UP_URL = `${import.meta.env.VITE_BASE_URL}/users/sign_up`;
 
 async function signUp(params: SignUpRequest, router: Router) {
   const response = await axios.post(SIGN_UP_URL, params);

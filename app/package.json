@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "clear_bucket": "aws s3 rm s3://app.rapidsell.io --recursive",
@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@capacitor/app": "5.0.6",
+    "@capacitor/camera": "^5.0.6",
     "@capacitor/cli": "5.2.2",
     "@capacitor/core": "5.2.2",
     "@capacitor/haptics": "5.0.6",
     "@capacitor/ios": "5.2.2",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
+    "@heroicons/vue": "^2.0.18",
     "@ionic/vue": "^7.2.1",
     "@ionic/vue-router": "^7.2.1",
     "axios": "^1.4.0",

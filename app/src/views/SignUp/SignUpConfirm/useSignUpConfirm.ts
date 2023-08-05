@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Router } from 'vue-router';
 import type { SignUpConfirmRequest, SignUpConfirmResponse } from "@/api/users/SignUpConfirm";
 
-const SIGN_UP_CONFIRM_URL = "https://api.rapidsell.io/users/sign_up/confirm";
+const SIGN_UP_CONFIRM_URL = `${import.meta.env.VITE_BASE_URL}/users/sign_up/confirm`;
 
 async function signUpConfirm(params: SignUpConfirmRequest, router: Router) {
   const response = await axios.post(SIGN_UP_CONFIRM_URL, params);

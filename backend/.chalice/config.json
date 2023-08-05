@@ -9,7 +9,10 @@
         "tls_version": "TLS_1_2|TLS_1_0",
         "certificate_arn": "arn:aws:acm:us-east-1:314100250587:certificate/7e0c6260-b090-4a17-85ae-225235b9521b"
       },
+      "manage_iam_role": false,
+      "iam_role_arn": "arn:aws:iam::314100250587:role/chalice_role",
       "environment_variables": {
+        "APP_SUBDOMAIN": "app.rapidsell.io",
         "AWS_COGNITO_CLIENT_ID": "7d594k8f4j1r54ned44thml0dd",
         "AWS_COGNITO_POOL_NAME": "rapidsell-pool",
         "AWS_COGNITO_POOL_ARN": "arn:aws:cognito-idp:us-west-2:314100250587:userpool/us-west-2_CzfxcOScU",

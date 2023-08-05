@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { IonPage, IonContent, IonInput, IonItem, IonList, IonCol, IonRow, IonButton } from '@ionic/vue';
+import { IonPage, IonContent, IonInput, IonItem, IonList, IonCol, IonRow, IonButton, IonLabel, IonSpinner } from '@ionic/vue';
 import { useSignIn } from "./useSignIn";
 import type { SignInRequest } from "@/api/users/SignIn";
 
@@ -9,15 +9,19 @@ import type { SignInRequest } from "@/api/users/SignIn";
 const email = ref('');
 const password = ref('');
 
+const loading = ref<boolean>(false);
+
 const router = useRouter();
 const { signIn } = useSignIn();
 
 const callSignIn = async () => {
+  loading.value = true;
   const params: SignInRequest = {
     email: email.value,
     password: password.value
   }
   await signIn(params, router)
+  loading.value = false;
 }
 </script>
 
@@ -35,12 +39,17 @@ const callSignIn = async () => {
         </ion-list>
         <ion-row responsive-sm>
           <ion-col>
-            <ion-button @click="callSignIn()" color="light" expand="block">Sign In</ion-button>
+            <ion-button :disabled="loading" @click="callSignIn()" color="primary" expand="block">
+              <ion-label class="sign-in-label">
+                Sign In
+                <ion-spinner v-if="loading" class="spinner"></ion-spinner> 
+              </ion-label>
+            </ion-button>
           </ion-col>
         </ion-row>
         <ion-row responsive-sm>
           <ion-col class="sign-up-link">
-            <router-link to="/sign_up">Sign Up</router-link>
+            <router-link :to="{ name: 'SignUp' }">Sign Up</router-link>
           </ion-col>
         </ion-row>
       </form>
@@ -48,7 +57,7 @@ const callSignIn = async () => {
   </ion-page>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 @media(min-width:640px){
   .sign-in-form {
     width: 30%;
@@ -58,5 +67,16 @@ const callSignIn = async () => {
 }
 .sign-up-link {
   text-align: left;
+}
+
+.sign-in-label {
+  display: flex;
+  align-items: center;
+
+  .spinner {
+    height: 20px;
+    width: 20px;
+    margin: 0px 5px;
+  }
 }
 </style>

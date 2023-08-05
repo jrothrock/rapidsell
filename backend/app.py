@@ -11,7 +11,3 @@ app.register_blueprint(users)
 app.register_blueprint(scanning)
 
 
-@app.route("/")
-def index():
-    """Hello world."""
-    return {"hello": "world"}

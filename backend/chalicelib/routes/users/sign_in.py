@@ -26,6 +26,7 @@ class SignInResponse:
     """The sign in response structure."""
 
     access_token: str
+    id_token: str
 
 
 def user_sign_in(request: Request):
@@ -43,6 +44,7 @@ def user_sign_in(request: Request):
     )
 
     access_token = boto_response["AuthenticationResult"]["AccessToken"]
-    response = SignInResponse(access_token=access_token)
+    id_token = boto_response["AuthenticationResult"]["IdToken"]
+    response = SignInResponse(access_token=access_token, id_token=id_token)
 
     return dataclasses.asdict(response)

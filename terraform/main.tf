@@ -30,11 +30,16 @@ module "scanning" {
   app_name = var.app_name
 }
 
+module "core" {
+  source = "./modules/core"
+}
 # Write certificate and api_domain_name to chalice for API gateway creation.
 resource "local_file" "private_key" {
     content = templatefile("${path.module}/../backend/.chalice/config.json.tpl",
       {
+        app_subdomain = var.app_subdomain
         api_domain_name = var.api_subdomain
+        chalice_iam_role_arn = module.core.chalice_role_arn
         certificate_arn = module.domain.aws_acm_certificate_arn
         cognito_client_id = module.users.cognito_client_id
         cognito_pool_name = var.cognito_pool_name
