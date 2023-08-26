@@ -34,10 +34,19 @@ resource "aws_iam_role_policy" "chalice_policy" {
       },
       {
         Action  = [
-          "s3:PutObject"
+          "s3:PutObject",
+          "s3:GetObject"
         ]
         Effect  = "Allow"
         Resource = ["arn:aws:s3:::rapidsell-scanning-photos/*"]
+      },
+      {
+        Action = [
+          "dynamodb:PutItem",
+          "dynamodb:GetItem"
+        ]
+        Effect  = "Allow"
+        Resource = ["${var.scanning_table_arn}"]
       }
     ]
   })

@@ -1,6 +1,17 @@
 {
   "resources": [
     {
+      "name": "scan_img_created",
+      "resource_type": "lambda_function",
+      "lambda_arn": "arn:aws:lambda:us-west-2:314100250587:function:backend-dev-scan_img_created"
+    },
+    {
+      "name": "scan_img_created-s3event",
+      "resource_type": "s3_event",
+      "bucket": "rapidsell-scanning-photos",
+      "lambda_arn": "arn:aws:lambda:us-west-2:314100250587:function:backend-dev-scan_img_created"
+    },
+    {
       "name": "api_handler",
       "resource_type": "lambda_function",
       "lambda_arn": "arn:aws:lambda:us-west-2:314100250587:function:backend-dev"

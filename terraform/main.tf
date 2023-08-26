@@ -32,6 +32,8 @@ module "scanning" {
 
 module "core" {
   source = "./modules/core"
+
+  scanning_table_arn = module.scanning.scanning_table_arn
 }
 # Write certificate and api_domain_name to chalice for API gateway creation.
 resource "local_file" "private_key" {
@@ -45,6 +47,8 @@ resource "local_file" "private_key" {
         cognito_pool_name = var.cognito_pool_name
         cognito_pool_arn = module.users.cognito_pool_arn
         scanning_bucket_name = module.scanning.scanning_bucket_name
+        scanning_table_name = module.scanning.scanning_table_name
+        serp_api_key  = var.serp_api_key
       }
     )
 

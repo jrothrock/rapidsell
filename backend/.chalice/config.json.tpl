@@ -16,7 +16,9 @@
         "AWS_COGNITO_CLIENT_ID": "${cognito_client_id}",
         "AWS_COGNITO_POOL_NAME": "${cognito_pool_name}",
         "AWS_COGNITO_POOL_ARN": "${cognito_pool_arn}",
-        "AWS_SCANNING_BUCKET_NAME": "${scanning_bucket_name}"
+        "AWS_SCANNING_BUCKET_NAME": "${scanning_bucket_name}",
+        "AWS_SCANNING_TABLE_NAME": "${scanning_table_name}",
+        "SERP_API_KEY": "${serp_api_key}"
       }
     }
   }

@@ -22,3 +22,9 @@ variable "cognito_pool_name" {
   type = string
   description = "Name for the cognito pool."
 }
+
+variable "serp_api_key" {
+  type = string
+  description = "API key for serpapi."
+  sensitive = true
+}

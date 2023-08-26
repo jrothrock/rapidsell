@@ -14,7 +14,7 @@ resource "aws_route53_record" "api" {
   name = var.api_subdomain
   type = "CNAME"
   zone_id = aws_route53_zone.main.zone_id
-  records = ["${jsondecode(file("${path.root}/../backend/.chalice/deployed/dev.json"))["resources"][2]["alias_domain_name"]}"]
+  records = ["${jsondecode(file("${path.root}/../backend/.chalice/deployed/dev.json"))["resources"][4]["alias_domain_name"]}"]
   count = fileexists("${path.root}/../backend/.chalice/deployed/dev.json") ? 1 : 0
   ttl  = 60
 }
