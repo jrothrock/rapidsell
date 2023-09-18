@@ -15,7 +15,10 @@
 </script>
 
 <template>
-  <ion-menu content-id="main-content" id="menu-content">
+  <ion-menu
+    id="menu-content"
+    content-id="main-content"
+  >
     <ion-header>
       <ion-toolbar>
         <ion-title>Menu Content</ion-title>
@@ -24,25 +27,44 @@
     <ion-content class="ion-padding">
       <ion-list v-if="store.isLoggedIn">
         <ion-item>
-          <router-link :to="{ name: 'Scanning' }" @click="menuController.toggle()"><p>Scanning</p></router-link>
+          <router-link
+            :to="{ name: 'Scanning' }"
+            @click="menuController.toggle()"
+          >
+            <p>Scanning</p>
+          </router-link>
         </ion-item>
       </ion-list>
-      <p v-if="!store.isLoggedIn">Login/Signup to access the other pages.</p>
+      <p v-if="!store.isLoggedIn">
+        Login/Signup to access the other pages.
+      </p>
     </ion-content>
     <ion-footer id="menu-footer">
-        <a v-if="store.isLoggedIn" @click="callLogOutUser()">Log Out</a>
-        <router-link v-if="!store.isLoggedIn" :to="{ name: 'SignIn' }"><p>Log In</p></router-link>
+      <a
+        v-if="store.isLoggedIn"
+        @click="callLogOutUser()"
+      >
+        Log Out
+      </a>
+      <router-link
+        v-if="!store.isLoggedIn"
+        :to="{ name: 'SignIn' }"
+      >
+        <p>Log In</p>
+      </router-link>
     </ion-footer>
   </ion-menu>
   <ion-content id="menu-header">
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
+        <ion-buttons>
+          <ion-menu-button />
+          <span class="title-router-container">
+            <router-link :to="{ name: 'Home'}">
+              <ion-title>RapidSell</ion-title>
+            </router-link>
+          </span>
         </ion-buttons>
-        <router-link :to="{ name: 'Home'}">
-          <ion-title>RapidSell</ion-title>
-        </router-link>
       </ion-toolbar>
     </ion-header>
   </ion-content>
@@ -60,6 +82,16 @@
 
   #menu-footer {
     bottom: 40px;
+  }
+}
+
+.title-router-container {
+  flex-grow: 1;
+
+  a {
+    display: inline-flex;
+    position: relative;
+    left: -24px;
   }
 }
 

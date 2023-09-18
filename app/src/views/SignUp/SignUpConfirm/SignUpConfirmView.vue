@@ -31,15 +31,26 @@ const callSignUpConfirm = async () => {
       <form class="sign-up-confirmation-form">
         <ion-list>
           <ion-item>
-            <ion-input label="Confirmation Code:" v-model="confirmation_code"></ion-input>
+            <ion-input
+              v-model="confirmation_code"
+              label="Confirmation Code:"
+            />
           </ion-item>
         </ion-list>
         <ion-row responsive-sm>
           <ion-col>
-            <ion-button :disabled="loading" @click="callSignUpConfirm()" color="primary" expand="block">
+            <ion-button
+              :disabled="loading"
+              color="primary"
+              expand="block"
+              @click="callSignUpConfirm()"
+            >
               <ion-label class="sign-up-confirm-label">
                 Confirm
-                <ion-spinner v-if="loading" class="spinner"></ion-spinner> 
+                <ion-spinner
+                  v-if="loading"
+                  class="spinner"
+                /> 
               </ion-label>
             </ion-button>
           </ion-col>

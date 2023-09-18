@@ -23,22 +23,37 @@ const { takePhoto, uploadPhoto } = useScanning(photo);
     <ion-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="6" v-if="photo">
-            <ion-img :src="photo.dataUrl"></ion-img>
+          <ion-col
+            v-if="photo"
+          >
+            <ion-img
+              class="display-image"
+              :src="photo.dataUrl"
+            />
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <ion-button v-if="photo" :disabled="loading" @click="handleUpload()">
+      <ion-button
+        v-if="photo"
+        :disabled="loading"
+        @click="handleUpload()"
+      >
         <ion-label class="photo-upload-label">
           Upload Photo
-          <ion-spinner v-if="loading" class="spinner"></ion-spinner> 
+          <ion-spinner
+            v-if="loading"
+            class="spinner"
+          /> 
         </ion-label>
       </ion-button>
 
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab
+        vertical="bottom"
+        horizontal="center"
+      >
         <ion-fab-button @click="takePhoto()">
-          <camera-icon class="icon"></camera-icon>
+          <camera-icon class="icon" />
         </ion-fab-button>
       </ion-fab>
     </ion-content>
@@ -71,5 +86,9 @@ const { takePhoto, uploadPhoto } = useScanning(photo);
     width: 20px;
     margin: 0px 5px;
   }
+}
+
+.display-image {
+  height: 300px;
 }
 </style>

@@ -30,18 +30,33 @@ const callSignUp = async () => {
       <form class="sign-up-form">
         <ion-list>
           <ion-item>
-            <ion-input label="Email:" v-model="email"></ion-input>
+            <ion-input
+              v-model="email"
+              label="Email:"
+            />
           </ion-item>
           <ion-item>
-            <ion-input label="Password:" v-model="password" type="password"></ion-input>
+            <ion-input
+              v-model="password"
+              label="Password:"
+              type="password"
+            />
           </ion-item>
         </ion-list>
         <ion-row responsive-sm>
           <ion-col>
-            <ion-button :disabled="loading" @click="callSignUp()" color="primary" expand="block">
+            <ion-button
+              :disabled="loading"
+              color="primary"
+              expand="block"
+              @click="callSignUp()"
+            >
               <ion-label class="sign-up-label">
                 Sign Up
-                <ion-spinner v-if="loading" class="spinner"></ion-spinner> 
+                <ion-spinner
+                  v-if="loading"
+                  class="spinner"
+                /> 
               </ion-label>
             </ion-button>
           </ion-col>

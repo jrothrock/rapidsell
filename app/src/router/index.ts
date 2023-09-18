@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { useAuthStore } from '@/stores';
-import Home from '../views/Home/Home.vue';
+import Home from '../views/Home/HomeView.vue';
 
 const BASE_URL = "/";
 
@@ -13,22 +13,22 @@ const routes = [
   {
     path: '/scanning',
     name: 'Scanning',
-    component: () => import('../views/Scanning/Scanning.vue')
+    component: () => import('../views/Scanning/ScanningView.vue')
   },
   {
     path: '/sign_in',
     name: 'SignIn',
-    component: () => import('../views/SignIn/SignIn.vue')
+    component: () => import('../views/SignIn/SignInView.vue')
   },
   {
     path: '/sign_up',
     name: 'SignUp',
-    component: () => import('../views/SignUp/SignUp.vue')
+    component: () => import('../views/SignUp/SignUpView.vue')
   },
   {
     path: '/sign_up/confirm/:email',
     name: 'SignUpConfirm',
-    component: () => import('../views/SignUp/SignUpConfirm/SignUpConfirm.vue')
+    component: () => import('../views/SignUp/SignUpConfirm/SignUpConfirmView.vue')
   }
 ]
 
