@@ -18,7 +18,7 @@ async function dataURLtoBlob(dataURI: string) {
   var byteString = atob(dataURI.split(',')[1]);
 
   // separate out the mime component
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
   // write the bytes of the string to an ArrayBuffer
   var ab = new ArrayBuffer(byteString.length);
@@ -38,17 +38,17 @@ async function dataURLtoBlob(dataURI: string) {
 }
 
 async function presign(mimetype: string): Promise<string> {
-  const store = useAuthStore()
+  const store = useAuthStore();
   const config = {
     headers: {
       "X-ACCESS-TOKEN": store.getAccessToken,
       "Authorization": `Bearer ${store.getIdToken}`,
       "X-MIME-TYPE": mimetype
     }
-  }
+  };
   const response = await axios.get(PRESIGN_URL, config);
   const data: PresignResponse = response.data;
-  return data.url
+  return data.url;
 }
 
 async function takePhoto(photo: Ref<UserPhoto | undefined>) {
@@ -56,7 +56,7 @@ async function takePhoto(photo: Ref<UserPhoto | undefined>) {
     resultType: CameraResultType.DataUrl,
     source: CameraSource.Camera,
     quality: 100,
-  })
+  });
   
   const fileName = Date.now() + '.jpeg';
   const savedFileImage: UserPhoto = {
@@ -64,7 +64,7 @@ async function takePhoto(photo: Ref<UserPhoto | undefined>) {
     dataUrl: capturedPhoto.dataUrl,
   };
 
-  photo.value = savedFileImage
+  photo.value = savedFileImage;
 }
 
 async function uploadPhoto(photo: Ref<UserPhoto | undefined>) {
@@ -104,5 +104,5 @@ export function useScanning(photo: Ref<UserPhoto | undefined>) {
   return {
     takePhoto: () => takePhoto(photo),
     uploadPhoto: () => uploadPhoto(photo),
-  }
+  };
 }

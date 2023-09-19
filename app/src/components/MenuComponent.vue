@@ -8,7 +8,7 @@
   const router = useRouter();
 
   const callLogOutUser = async () => {
-    await router.push({name: "SignIn"})
+    await router.push({name: "SignIn"});
     await menuController.toggle();
     await store.logOutUser();
   };
@@ -27,12 +27,11 @@
     <ion-content class="ion-padding">
       <ion-list v-if="store.isLoggedIn">
         <ion-item>
-          <router-link
-            :to="{ name: 'Scanning' }"
-            @click="menuController.toggle()"
+          <a
+            @click="router.push({name : 'Scanning'}); menuController.toggle()"
           >
             <p>Scanning</p>
-          </router-link>
+        </a>
         </ion-item>
       </ion-list>
       <p v-if="!store.isLoggedIn">

@@ -8,6 +8,7 @@ Unfortunuately, there are no python chromium layers currently
 built.
 """
 import os
+import typing
 
 import boto3
 import requests
@@ -19,7 +20,7 @@ FORMATTABLE_SERP_API_ENDPOINT = (
 )
 
 
-def _capture_important_data(json_response: dict[str, any]) -> dict[str, any]:
+def _capture_important_data(json_response: dict[str, typing.Any]) -> dict[str, typing.Any]:
     text_results = json_response["text_results"]
 
     title_key_words = [x["text"] for x in text_results]
@@ -37,7 +38,7 @@ def run(uuid_for_image: str, image_s3_key: str, image_s3_bucket: str):
     )
 
     response = requests.get(serp_api_endpoint)
-    json_response: dict[str, any] = response.json()
+    json_response: dict[str, typing.Any] = response.json()
 
     print(json_response)
 

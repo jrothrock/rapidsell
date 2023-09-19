@@ -8,7 +8,7 @@ import type { SignUpConfirmRequest } from "@/api/users/SignUpConfirm";
 const route = useRoute();
 const router = useRouter();
 
-const confirmation_code = ref('');
+const confirmation_code = ref<string>();
 
 const loading = ref<boolean>(false);
 
@@ -18,11 +18,11 @@ const callSignUpConfirm = async () => {
   loading.value = true;
   const params: SignUpConfirmRequest = {
     email: String(route.params.email),
-    confirmation_code: confirmation_code.value
-  }
-  await signUpConfirm(params, router)
+    confirmation_code: confirmation_code.value as string,
+  };
+  await signUpConfirm(params, router);
   loading.value = false;
-}
+};
 </script>
 
 <template>

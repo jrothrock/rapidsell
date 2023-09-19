@@ -18,10 +18,10 @@ const callSignUp = async () => {
   const params: SignUpRequest = {
     email: email.value,
     password: password.value
-  }
-  await signUp(params, router)
+  };
+  await signUp(params, router);
   loading.value = false;
-}
+};
 </script>
 
 <template>

@@ -14,7 +14,7 @@ def img_redirect_s3(request: Request, img_uuid: str):
         TableName=os.environ.get("AWS_SCANNING_TABLE_NAME"),
         Key={
             "pk": {"S": f"ScanningImage#{img_uuid}"},
-            "sk": {"S": f"ScanningImage#meta"},
+            "sk": {"S": "ScanningImage#meta"},
         },
     )
 

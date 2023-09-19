@@ -5,9 +5,9 @@ from chalice import Blueprint
 from chalice import CognitoUserPoolAuthorizer
 from chalice import CORSConfig
 
-from chalicelib.routes.scanning.img_redirect import img_redirect_s3
-from chalicelib.routes.scanning.presign import PresignResponse
-from chalicelib.routes.scanning.presign import presign_s3_url
+from chalicelib.routes.scanning._img_redirect import img_redirect_s3
+from chalicelib.routes.scanning._presign import PresignResponse
+from chalicelib.routes.scanning._presign import presign_s3_url
 
 scanning = Blueprint(__name__)
 

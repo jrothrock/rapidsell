@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { IonPage, IonContent, IonInput, IonItem, IonList, IonCol, IonRow, IonButton, IonLabel, IonSpinner } from '@ionic/vue';
+import { IonPage, onIonViewWillLeave, IonContent, IonInput, IonItem, IonList, IonCol, IonRow, IonButton, IonLabel, IonSpinner } from '@ionic/vue';
 import { useSignIn } from "./useSignIn";
 import type { SignInRequest } from "@/api/users/SignIn";
 
 
-const email = ref('');
-const password = ref('');
+const email = ref<string>();
+const password = ref<string>();
 
 const loading = ref<boolean>(false);
 
@@ -17,12 +17,17 @@ const { signIn } = useSignIn();
 const callSignIn = async () => {
   loading.value = true;
   const params: SignInRequest = {
-    email: email.value,
-    password: password.value
-  }
-  await signIn(params, router)
+    email: email.value as string,
+    password: password.value as string,
+  };
+  await signIn(params, router);
   loading.value = false;
-}
+};
+
+onIonViewWillLeave(() => {
+  email.value = undefined;
+  password.value = undefined;
+})
 </script>
 
 <template>

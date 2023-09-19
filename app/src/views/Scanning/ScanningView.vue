@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { CameraIcon } from '@heroicons/vue/24/solid';
-import { IonPage, IonContent, IonFab, IonFabButton, IonLabel, IonSpinner, IonGrid, IonRow, IonCol, IonImg, IonButton } from '@ionic/vue';
+import { IonPage, onIonViewWillLeave, IonContent, IonFab, IonFabButton, IonLabel, IonSpinner, IonGrid, IonRow, IonCol, IonImg, IonButton } from '@ionic/vue';
 import { useScanning } from "./useScanning";
 import type { UserPhoto } from "./useScanning";
 
@@ -11,9 +11,16 @@ const loading = ref<boolean>(false);
 
 const handleUpload = async () => {
   loading.value = true;
-  await uploadPhoto()
+  await uploadPhoto();
   loading.value = false;
 };
+
+
+// We need to keep clear the values manually, as the component/page never truly leaves.
+// https://ionicframework.com/docs/vue/lifecycle#how-ionic-framework-handles-the-life-of-a-page
+onIonViewWillLeave(() => {
+  photo.value = undefined;
+})
 
 const { takePhoto, uploadPhoto } = useScanning(photo);
 </script>
@@ -61,18 +68,6 @@ const { takePhoto, uploadPhoto } = useScanning(photo);
 </template>
 
 <style scoped lang="scss">
-@media(min-width:640px){
-  .sign-in-form {
-    width: 30%;
-    display: inline-flex;
-    flex-direction: column;
-  }
-}
-
-.sign-up-link {
-  text-align: left;
-}
-
 .icon {
   height: 70%
 }

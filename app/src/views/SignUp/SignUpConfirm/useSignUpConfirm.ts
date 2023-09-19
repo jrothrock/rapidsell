@@ -15,5 +15,5 @@ async function signUpConfirm(params: SignUpConfirmRequest, router: Router) {
 export function useSignUpConfirm() {
   return {
     signUpConfirm: (params: SignUpConfirmRequest, router: Router) => signUpConfirm(params, router)
-  }
+  };
 }

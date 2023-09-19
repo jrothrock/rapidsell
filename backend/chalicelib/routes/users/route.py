@@ -1,14 +1,14 @@
 """User routes."""
 from chalice import Blueprint
 
-from chalicelib.routes.users.log_out import LogOutResponse
-from chalicelib.routes.users.log_out import user_log_out
-from chalicelib.routes.users.sign_in import SignInResponse
-from chalicelib.routes.users.sign_in import user_sign_in
-from chalicelib.routes.users.sign_up import SignUpResponse
-from chalicelib.routes.users.sign_up import user_sign_up
-from chalicelib.routes.users.sign_up_confirm import ConfirmSignUpResponse
-from chalicelib.routes.users.sign_up_confirm import user_confirm_signup
+from chalicelib.routes.users._log_out import LogOutResponse
+from chalicelib.routes.users._log_out import user_log_out
+from chalicelib.routes.users._sign_in import SignInResponse
+from chalicelib.routes.users._sign_in import user_sign_in
+from chalicelib.routes.users._sign_up import SignUpResponse
+from chalicelib.routes.users._sign_up import user_sign_up
+from chalicelib.routes.users._sign_up_confirm import ConfirmSignUpResponse
+from chalicelib.routes.users._sign_up_confirm import user_confirm_signup
 
 users = Blueprint(__name__)
 

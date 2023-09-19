@@ -15,14 +15,14 @@ from chalicelib.routes.users.route import users
 app = Chalice(app_name="backend")
 
 #######
-### ROUTES
+# ROUTES
 #######
 
 app.register_blueprint(users)
 app.register_blueprint(scanning)
 
 #######
-### EVENTS
+# EVENTS
 #######
 
 

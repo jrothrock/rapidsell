@@ -30,7 +30,7 @@ const routes = [
     name: 'SignUpConfirm',
     component: () => import('../views/SignUp/SignUpConfirm/SignUpConfirmView.vue')
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(BASE_URL),
@@ -45,13 +45,13 @@ router.beforeEach((to, _, next) => {
     const store = useAuthStore();
 
     if(!store.isLoggedIn) {
-      next("/sign_in")
+      next("/sign_in");
     } else {
       next();
     }
   } else {
     next();
   }
-})
+});
 
 export default router;

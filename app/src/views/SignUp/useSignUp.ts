@@ -8,12 +8,12 @@ async function signUp(params: SignUpRequest, router: Router) {
   const response = await axios.post(SIGN_UP_URL, params);
   const data: SignUpResponse = response.data;
   if(data.success) {
-    router.push({name: "SignUpConfirm", params:{email: params.email}})
+    router.push({name: "SignUpConfirm", params:{email: params.email}});
   }
 }
 
 export function useSignUp() {
   return {
     signUp: (params: SignUpRequest, router: Router) => signUp(params, router)
-  }
+  };
 }

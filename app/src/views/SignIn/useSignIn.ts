@@ -11,12 +11,12 @@ async function signIn(params: SignInRequest, router: Router) {
   if(data.access_token) {
     const store = useAuthStore();
     store.loginUser(data.access_token, data.id_token);
-    router.push({name: "Home"})
+    router.push({name: "Home"});
   }
 }
 
 export function useSignIn() {
   return {
     signIn: (params: SignInRequest, router: Router) => signIn(params, router)
-  }
+  };
 }
