@@ -13,4 +13,16 @@ resource "aws_dynamodb_table" "scanning_table" {
     name = "sk"
     type = "S"
   }
+
+  ttl {
+    attribute_name = "ttl"
+    enabled        = true
+  }
+
+  global_secondary_index {
+    name               = "InvertedIndex"
+    hash_key           = "sk"
+    range_key          = "pk"
+    projection_type    = "ALL"
+  }
 }

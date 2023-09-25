@@ -31,4 +31,5 @@ app.register_blueprint(scanning)
     bucket=os.environ.get("AWS_SCANNING_BUCKET_NAME"), events=["s3:ObjectCreated:*"]
 )
 def scan_img_created(event):
+    """Will check the scan when an image has been created/uploaded."""
     scan_image_created(event)

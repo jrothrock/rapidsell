@@ -6,6 +6,8 @@ from chalice import CognitoUserPoolAuthorizer
 from chalice import CORSConfig
 
 from chalicelib.routes.scanning._img_redirect import img_redirect_s3
+from chalicelib.routes.scanning._list_scans import ListScansResponse
+from chalicelib.routes.scanning._list_scans import list_scans_for_user
 from chalicelib.routes.scanning._presign import PresignResponse
 from chalicelib.routes.scanning._presign import presign_s3_url
 
@@ -34,4 +36,13 @@ def presign() -> PresignResponse:
 
 @scanning.route("/scanning/img/{img}")
 def img_redirect(img: str):
+    """Create a 301 redirect for Google lens to access the image."""
     return img_redirect_s3(scanning.current_request, img)
+
+
+@scanning.route(
+    "/scanning/list", methods=["GET"], authorizer=authorizer, cors=cors_config
+)
+def list_scans() -> ListScansResponse:
+    """Get a list of completed scans for the user."""
+    return list_scans_for_user(scanning.current_request)

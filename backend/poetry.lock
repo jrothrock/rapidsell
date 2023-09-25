@@ -549,6 +549,23 @@ files = [
 ]
 
 [[package]]
+name = "pynamodb"
+version = "5.5.0"
+description = "A Pythonic Interface to DynamoDB"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "pynamodb-5.5.0-py3-none-any.whl", hash = "sha256:a44fb486fc3e66a25b58d921e07f016f62416e323b381b96c1b725105868dacf"},
+    {file = "pynamodb-5.5.0.tar.gz", hash = "sha256:82f77bb0c21a12756e6781df735ca841f543337847d8522a4ab8db6df7bbfc9f"},
+]
+
+[package.dependencies]
+botocore = ">=1.12.54"
+
+[package.extras]
+signals = ["blinker (>=1.3,<2.0)"]
+
+[[package]]
 name = "pytest"
 version = "6.2.5"
 description = "pytest: simple powerful testing with Python"
@@ -827,4 +844,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "5ddebd8743129c91afaedd399c14b61fb3182b640e7b2e8e798a1110a58511b5"
+content-hash = "061e76c61e090edd4521a0183bd82db6c92b69f80f9a446504347a8db2d3e926"

@@ -43,10 +43,11 @@ resource "aws_iam_role_policy" "chalice_policy" {
       {
         Action = [
           "dynamodb:PutItem",
-          "dynamodb:GetItem"
+          "dynamodb:GetItem",
+          "dynamodb:Query"
         ]
         Effect  = "Allow"
-        Resource = ["${var.scanning_table_arn}"]
+        Resource = ["${var.scanning_table_arn}", "${var.scanning_table_arn}/*"]
       }
     ]
   })

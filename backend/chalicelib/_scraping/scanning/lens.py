@@ -10,8 +10,9 @@ built.
 import os
 import typing
 
-import boto3
 import requests
+
+from chalicelib._dynamo.scanning import ScannedImageModel
 
 FORMATTABLE_RAPID_SELL_ENDPOINT = "https://api.rapidsell.io/scanning/img/{img}"
 
@@ -20,11 +21,21 @@ FORMATTABLE_SERP_API_ENDPOINT = (
 )
 
 
-def _capture_important_data(json_response: dict[str, typing.Any]) -> dict[str, typing.Any]:
-    text_results = json_response["text_results"]
+def _capture_important_data(
+    json_response: dict[str, typing.Any]
+) -> dict[str, typing.Any]:
+    print(json_response)
 
-    title_key_words = [x["text"] for x in text_results]
-    title = " ".join(title_key_words)
+    # If there's text in the image, this will find it.
+    if json_response.get("text_results"):
+        text_results = json_response["text_results"]
+        title_key_words = [x["text"] for x in text_results]
+        title = " ".join(title_key_words)
+    else:
+        # A better way to do this, is to loop over the visual
+        # results and perform TF-IDF on them to extract the most likely
+        # title.
+        title = json_response["visual_matches"][0]["title"]
 
     return {"title": title}
 
@@ -40,33 +51,21 @@ def run(uuid_for_image: str, image_s3_key: str, image_s3_bucket: str):
     response = requests.get(serp_api_endpoint)
     json_response: dict[str, typing.Any] = response.json()
 
-    print(json_response)
-
     # Bail if we don't succeed.
     if json_response["search_metadata"]["status"] != "Success":
         return
 
     important_data = _capture_important_data(json_response)
 
-    # TODO: Move dynamo schema to a better location.
-    dynamo_client = boto3.client("dynamodb")
-    response = dynamo_client.put_item(
-        TableName=os.environ.get("AWS_SCANNING_TABLE_NAME"),
-        Item={
-            "pk": {
-                "S": f"ScannedImage#{uuid_for_image}",
-            },
-            "sk": {
-                "S": "ScannedImage#meta",
-            },
-            "image_key": {
-                "S": image_s3_key,
-            },
-            "image_bucket": {
-                "S": image_s3_bucket,
-            },
-            "serp_found_title": {
-                "S": important_data["title"],
-            },
-        },
+    user_name = image_s3_key.split("/")[0]
+
+    pk = f"ScannedImage#{user_name}#{uuid_for_image}"
+    sk = "ScannedImage#meta"
+    scanned_image = ScannedImageModel(
+        pk,
+        sk,
+        image_key=image_s3_key,
+        image_bucket=image_s3_bucket,
+        serp_found_title=important_data["title"],
     )
+    scanned_image.save()
