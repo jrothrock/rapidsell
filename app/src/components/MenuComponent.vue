@@ -27,11 +27,20 @@
     <ion-content class="ion-padding">
       <ion-list v-if="store.isLoggedIn">
         <ion-item>
-          <a
-            @click="router.push({name : 'Scanning'}); menuController.toggle()"
+          <router-link
+            :to="{ name: 'Scanning' }"
+            @click="menuController.toggle()"
           >
-            <p>Scanning</p>
-        </a>
+            <p>Scans</p>
+          </router-link>
+        </ion-item>
+        <ion-item>
+          <router-link
+            :to="{ name: 'ScanningNew' }"
+            @click="menuController.toggle()"
+          >
+            <p>New Scan</p>
+          </router-link>
         </ion-item>
       </ion-list>
       <p v-if="!store.isLoggedIn">

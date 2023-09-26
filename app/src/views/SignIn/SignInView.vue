@@ -27,7 +27,7 @@ const callSignIn = async () => {
 onIonViewWillLeave(() => {
   email.value = undefined;
   password.value = undefined;
-})
+});
 </script>
 
 <template>

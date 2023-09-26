@@ -8,6 +8,7 @@ In terminal 2, go into the `./backend` directory, install the dependecies with `
 
 ## Linting
 For the app: `npm run lint`
+
 For the backend: `black .; isort .; flake8 .; mypy .;pydocstyle .  --count`
 
 ## Building IOS app
@@ -15,7 +16,9 @@ To build/update the IOS app, run `npx cap sync`
 
 ## Deploying
 Terraform: `terraform apply` (may want to plan first)
+
 Chalice: `chalice deploy`
+
 Frontend: `npm run deploy`
 
 ## Adding new packages to backend
