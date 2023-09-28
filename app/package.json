@@ -12,7 +12,8 @@
     "deploy": "npm run build && npm run clear_bucket && npm run sync_bucket",
     "ionic:build": "npm run build",
     "ionic:serve": "npm run dev",
-    "lint": "eslint --ext .vue,.ts src --fix"
+    "lint": "eslint --ext .vue,.ts src --fix",
+    "verify": "npm run lint"
   },
   "dependencies": {
     "@capacitor/app": "5.0.6",

@@ -14,6 +14,7 @@ chalice = "^1.29.0"
 boto3 = "^1.28.15"
 requests = "^2.31.0"
 pynamodb = "^5.5.0"
+taskipy = "^1.12.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1"
@@ -43,6 +44,19 @@ force_single_line = true
 
 [tool.pydocstyle]
 match-dir='[^\.venv].*'
+
+[tool.taskipy.tasks]
+black = "black ."
+isort = "isort ."
+flake8 = "flake8 ."
+mypy = "mypy ."
+pydoc = "pydocstyle .  --count"
+lint = "poetry run task flake8 && poetry run task mypy && poetry run task pydoc"
+format = "poetry run task black && poetry run task isort"
+verify = "poetry run task lint && poetry run task format"
+export = "poetry export -f requirements.txt --output requirements.txt" 
+deploy = "poetry run task export && chalice deploy"
+dev = "chalice local"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
