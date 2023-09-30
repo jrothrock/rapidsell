@@ -1,5 +1,5 @@
 # About
-Take pictures of items to recognize what they are, and find the value of them.
+Take pictures of items to recognize what they are, and finds the value of them.
 
 Uses Vue & Ionic for the frontend, Chalice on the backend (an AWS Python serverless microframework), and Terraform for infrastructure provisioning and management.
 
@@ -12,10 +12,10 @@ In terminal 2, go into the `./backend` directory, install the dependecies with `
 ## Linting & Formatting
 For the app: `npm run verify`
 
-For the backend: `poetry run verify`
+For the backend: `poetry run task verify`
 
-## Building IOS app
-To build/update the IOS app, run `npx cap sync`, then build in Xcode.
+## Building iOS app
+To build/update the iOS app, run `npx cap sync`, then build in Xcode.
 
 ## Deploying
 Frontend: `npm run deploy`
