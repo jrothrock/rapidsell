@@ -1,8 +1,9 @@
 """Contains the Dynamo models related to scanning."""
-# See terraform/modules/scanning/dynamo/main.tf
+# See terraform/modules/backend/scanning/dynamo/main.tf
 import os
 
 from pynamodb.attributes import DiscriminatorAttribute
+from pynamodb.attributes import NumberAttribute
 from pynamodb.attributes import TTLAttribute
 from pynamodb.attributes import UnicodeAttribute
 from pynamodb.models import Model
@@ -40,3 +41,5 @@ class ScannedImageModel(ScanModel, discriminator="Scanned"):  # type: ignore
     image_key = UnicodeAttribute()
     image_bucket = UnicodeAttribute()
     serp_found_title = UnicodeAttribute()
+    serp_found_price = NumberAttribute(null=True)
+    serp_json_response = UnicodeAttribute()

@@ -14,7 +14,10 @@ It may take some time for DNS propogration and ACM certificate validation. So wa
 ### Steps
 From scratch the steps are:
 1. Run `terraform apply` (may explode due to DNS settings, or CNAME)
+
 1b. If due to DNS settings: Run `terraform apply` again (this will create the ACM needed for chalice.)
+
 2. Run `poetry run task deploy`
+
 3. Run `terraform apply` again (this will create the CNAME)
 

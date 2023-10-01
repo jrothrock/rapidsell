@@ -30,6 +30,7 @@ class Scan:
     # A presigned S3 URL to access the image.
     image_url: str
     serp_found_title: str
+    serp_found_price: float
 
 
 @dataclasses.dataclass
@@ -48,7 +49,11 @@ def _create_scan_item_from_results(item: ScannedImageModel) -> Scan:
         ExpiresIn=3600,
     )
 
-    return Scan(image_url=s3_response, serp_found_title=item.serp_found_title)
+    return Scan(
+        image_url=s3_response,
+        serp_found_title=item.serp_found_title,
+        serp_found_price=item.serp_found_price,
+    )
 
 
 def list_scans_for_user(request: Request):

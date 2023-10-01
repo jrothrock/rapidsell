@@ -33,6 +33,9 @@ onIonViewWillLeave(() => {
         <ion-label class="title-container">
           Title
         </ion-label>
+        <ion-label class="price-container">
+          price
+        </ion-label>
       </ion-item>
       <ion-item
         v-for="scan in scans"
@@ -45,6 +48,9 @@ onIonViewWillLeave(() => {
         >
         <ion-label class="title-container">
           {{ scan.serp_found_title }}
+        </ion-label>
+        <ion-label class="title-container">
+          {{ scan.serp_found_price }}
         </ion-label>
       </ion-item>
     </ion-content>
