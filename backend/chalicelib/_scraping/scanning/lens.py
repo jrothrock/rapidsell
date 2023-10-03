@@ -8,6 +8,7 @@ Unfortunuately, there are no python chromium layers currently
 built.
 """
 import difflib
+import json
 import os
 import statistics
 import typing
@@ -80,6 +81,6 @@ def run(uuid_for_image: str, image_s3_key: str, image_s3_bucket: str):
         image_bucket=image_s3_bucket,
         serp_found_title=title,
         serp_found_price=price,
-        serp_json_response=str(json_response),
+        serp_json_response=json.dumps(json_response),
     )
     scanned_image.save()

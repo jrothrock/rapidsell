@@ -24,23 +24,24 @@ class ListScansRequest:
 
 
 @dataclasses.dataclass
-class Scan:
+class ScanResponse:
     """The response for a ScannedImageModel."""
 
     # A presigned S3 URL to access the image.
-    image_url: str
-    serp_found_title: str
-    serp_found_price: float
+    imageUrl: str
+    serpFoundTitle: str
+    serpFoundPrice: float
+    serpJsonResponse: str
 
 
 @dataclasses.dataclass
 class ListScansResponse:
     """The list scans response structure."""
 
-    scans: list[Scan]
+    scans: list[ScanResponse]
 
 
-def _create_scan_item_from_results(item: ScannedImageModel) -> Scan:
+def _create_scan_response_item_from_results(item: ScannedImageModel) -> ScanResponse:
     """Transform ScannedImage dynamo record to Scan response."""
     boto_s3_client = boto3.client("s3", config=Config(signature_version="s3v4"))
     s3_response = boto_s3_client.generate_presigned_url(
@@ -49,10 +50,11 @@ def _create_scan_item_from_results(item: ScannedImageModel) -> Scan:
         ExpiresIn=3600,
     )
 
-    return Scan(
-        image_url=s3_response,
-        serp_found_title=item.serp_found_title,
-        serp_found_price=item.serp_found_price,
+    return ScanResponse(
+        imageUrl=s3_response,
+        serpFoundTitle=item.serp_found_title,
+        serpFoundPrice=item.serp_found_price,
+        serpJsonResponse=item.serp_json_response,
     )
 
 
@@ -68,7 +70,7 @@ def list_scans_for_user(request: Request):
         "ScannedImage#meta",
         ScannedImageModel.pk.startswith(f"ScannedImage#{user_name}#"),
     )
-    scan_items = [_create_scan_item_from_results(item) for item in results]
+    scan_items = [_create_scan_response_item_from_results(item) for item in results]
 
     response = ListScansResponse(scans=scan_items)
 
